@@ -1,11 +1,16 @@
-import React from 'react';
+import React, { use } from 'react';
 
-const Countries = () => {
+const Countries = ({ countriesPromise }) => {
+    const countriesData = use(countriesPromise);
+    const countries = countriesData.countries
+    console.log(countries)
+    // console.log(countriesData)
     return (
         <div>
-            <h1>My name is jibon</h1>
+            <h1>In the countries: {countries.length} </h1>
         </div>
     );
 };
 
 export default Countries;
+
