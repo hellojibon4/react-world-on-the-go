@@ -1,13 +1,30 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './Country.css'
 
-const Country = ({ country }) => {
+const Country = ({ country, handlevisitedCountries }) => {
     // console.log(country)
-    const handalVisited =() =>{
-        console.log("button Clicked")
+    const [Visited, setVisited] = useState(false);
+    // console.log(handlevisitedCountries)
+    const handalVisited = () => {
+
+        // system=1
+        // if(Visited){
+        //     setVisited(false)
+        // }
+        // else{
+        //     setVisited(true)
+        // }
+
+        // system=2
+        // setVisited(Visited ? false : true)
+
+        // system=3
+        setVisited(!Visited);
+        handlevisitedCountries(country);
     }
+
     return (
-        <div className='country'>
+        <div className={`country ${Visited && `country-Visited`}`}>
             <img src={country.flags.flags.png} alt={country.flags.flags.alt} />
             <h3>Name: {country.name.common} </h3>
             <h3>CCN: {country.ccn3.ccn3} </h3>
@@ -17,7 +34,9 @@ const Country = ({ country }) => {
             } </h3>
             <h3>population: {country.population.population} </h3>
             <h3></h3>
-            <button onClick={handalVisited}>Not Visited</button>
+            <button onClick={handalVisited}>
+                {Visited ? 'Visited' : 'Not Visited'}
+            </button>
         </div>
     );
 };
